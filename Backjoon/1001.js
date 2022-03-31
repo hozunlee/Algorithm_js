@@ -1,11 +1,9 @@
 const input = require("fs")
-    .readFileSync("example.txt")
+    .readFileSync("/dev/stdin")
     .toString()
-    .split("\n")
+    .split(" ")
     .map((value) => +value);
 
-console.log(input);
-
-let [A, B] = input;
+const [A, B] = input;
 
 console.log(A - B);
