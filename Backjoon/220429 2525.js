@@ -20,10 +20,5 @@ function solution(H, M, C) {
 
 //숏코딩
 
-console.log(
-    m >= 45
-        ? h + " " + (m - 45)
-        : h
-        ? h - 1 + " " + (60 - 45 + m)
-        : 23 + " " + (60 - 45 + m)
-);
+const plusMinutes = +C + M;
+console.log(`${(h + Math.floor(plusMinutes / 60)) % 24} ${plusMinutes % 60}`);
