@@ -1,4 +1,4 @@
-//https://www.acmicpc.net/problem/11021
+//https://www.acmicpc.net/problem/11022
 
 const input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 
