@@ -7,26 +7,27 @@
 // 5. 만약 추측이 너무 낮았다면, 즉 배열[guess] < 타켓이라면, min = guess + 1로 바꿉니다.
 // 6. 그렇지 않다면 추측이 너무 높습니다. max = guess - 1로 바꿉니다.
 // 7. 2단계로 돌아갑니다.
-
 /* Returns either the index of the location in the array,
   or -1 if the array did not contain the targetValue */
 var doSearch = function (array, targetValue) {
     var min = 0;
     var max = array.length - 1;
     var guess;
+    var count = 0;
 
-    //.max < min, 이라면 멈춥니다. 니까 반대인 max >= min 을 준다.
     while (max >= min) {
         guess = Math.floor((min + max) / 2);
+        count += 1;
+        println("guess " + array[guess]);
         if (array[guess] === targetValue) {
+            println("count=> " + count);
+
             return guess;
         } else if (array[guess] < targetValue) {
             min = guess + 1;
-            console.log("min :>> ", min);
             continue;
         } else {
             max = guess - 1;
-            console.log("max :>> ", max);
         }
     }
 
@@ -39,6 +40,8 @@ var primes = [
 ];
 
 var result = doSearch(primes, 73);
-console.log("Found prime at index " + result);
+println("Found prime at index " + result);
 
-//Program.assertEqual(doSearch(primes, 73), 20);
+Program.assertEqual(doSearch(primes, 73), 20);
+Program.assertEqual(doSearch(primes, 2), 0);
+Program.assertEqual(doSearch(primes, 3), 1);
