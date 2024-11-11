@@ -1,0 +1,54 @@
+const input = require("fs")
+    .readFileSync(process.platform === "linux" ? "/dev/stdin" : "./example.txt")
+    .toString()
+    .trim()
+    .split("\n");
+
+const map = new Map([
+    ["A+", 4.5],
+    ["A0", 4.0],
+    ["B+", 3.5],
+    ["B0", 3.0],
+    ["C+", 2.5],
+    ["C0", 2.0],
+    ["D+", 1.5],
+    ["D0", 1.0],
+    ["F", 0.0],
+]);
+
+// 학점의 합 구하기
+// (학점 x 과목평점) / 학점의 총합
+// if (P) 계산에서 제외 하기
+
+// 96ms
+let pointSum = 0;
+let sum = 0;
+
+for (const a of input) {
+    const array = a.split(" ");
+    if (array[2] === "P") {
+        continue;
+    }
+
+    console.log("array[2] :>> ", array);
+    sum += Number(array[1]);
+    pointSum += map.get(array[2]) * Number(array[1]);
+}
+
+// 시간 100 ms 루프 2회
+// const 배열 = [];
+// const { sum, pointSum } = 배열.reduce(
+//     (acc, cur) => {
+//         if (cur.point === "P") {
+//             return acc;
+//         }
+
+//         acc.sum += Number(cur.subject);
+//         acc.pointSum += map.get(cur.point) * cur.subject;
+
+//         return acc;
+//     },
+//     { sum: 0, pointSum: 0 }
+// );
+
+console.log((pointSum / sum).toFixed(6));
